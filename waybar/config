@@ -3,7 +3,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "battery", "network", "tray"],
+  "modules-right": ["pulseaudio", "backlight", "battery", "network", "tray"],
 
   "clock": {
     "format": "{:%a %d %b  %H:%M}",
@@ -36,6 +36,14 @@
 
   "tray": {
     "spacing": 10
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "  {percent}%",
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-"
   }
+
+
 }
 
