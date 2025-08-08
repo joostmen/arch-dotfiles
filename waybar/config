@@ -3,7 +3,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "backlight", "battery", "network", "tray"],
+  "modules-right": ["wireplumber", "backlight", "battery", "network", "tray"],
 
   "clock": {
     "format": "{:%a %d %b  %H:%M}",
@@ -23,27 +23,27 @@
     "tooltip": true
   },
 
-  "pulseaudio": {
-    "format": "{volume}% ",
-    "format-muted": ""
+  "wireplumber": {
+    "format": " {volume}%",
+    "format-muted": " Muted",
+    "on-click": "pavucontrol"
   },
+
 
   "network": {
     "format-wifi": "  {essid} ({signalStrength}%)",
-    "format-ethernet": " {ipaddr}",
+    "format-ethernet": "󰈁 {ipaddr}",
     "format-disconnected": "Disconnected"
   },
 
   "tray": {
     "spacing": 10
-  },
+  }  
   "backlight": {
     "device": "intel_backlight",
     "format": "  {percent}%",
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl set 5%-"
   }
-
-
 }
 

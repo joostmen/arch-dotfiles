@@ -32,7 +32,7 @@ window#waybar {
 
 #clock,
 #battery,
-#pulseaudio,
+#wireplumber,
 #network,
 #backlight,
 #tray,
@@ -58,7 +58,7 @@ window#waybar {
     color: #8ec07c;
 }
 
-#pulseaudio {
+#wireplumber {
     color: #83a598;
 }
 
