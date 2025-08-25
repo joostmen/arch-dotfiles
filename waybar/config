@@ -3,7 +3,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["wireplumber", "backlight", "battery", "network", "tray"],
+  "modules-right": ["wireplumber", "battery", "network", "tray"],
 
   "clock": {
     "format": "{:%a %d %b  %H:%M}",
@@ -38,7 +38,7 @@
 
   "tray": {
     "spacing": 10
-  }  
+  },  
   "backlight": {
     "device": "intel_backlight",
     "format": "  {percent}%",

@@ -3,24 +3,23 @@
 WALLPAPER_DIR="/home/joost/Images/wallpapers"
 CONFIG_FILE="/home/joost/.config/hypr/hyprpaper.conf"
 
-# Kies een willekeurige wallpaper
-SELECTED_WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | shuf -n 1)
+monitors=$(hyprctl monitors | grep "^Monitor" | sed -r 's/^Monitor ([^(]+) \(ID [0-9]+\):$/\1/')
 
-# Start nieuwe config met preload regels
-> "$CONFIG_FILE"  # Leeg het bestand eerst
+> "$CONFIG_FILE"
 
 for wp in "$WALLPAPER_DIR"/*.{jpg,png,jpeg}; do
     [ -f "$wp" ] && echo "preload = $wp" >> "$CONFIG_FILE"
 done
 
-# Voeg de regel toe die daadwerkelijk een wallpaper zet
-echo "wallpaper = eDP-1,$SELECTED_WALLPAPER" >> "$CONFIG_FILE"
-# Pas eDP-1 aan naar jouw monitornaam! (zie tip hieronder)
+for mon in $monitors; do
+    selected_wp=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | shuf -n 1)
+    echo "wallpaper = $mon,$selected_wp" >> "$CONFIG_FILE"
+done
 
-# Stop eventueel draaiende hyprpaper
+
+# Stop hyprpaper
 pkill -x hyprpaper
 
-# Wacht even (heel kort) om zeker te zijn dat proces is gestopt
 sleep 0.2
 
 # Start hyprpaper opnieuw
