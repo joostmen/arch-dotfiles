@@ -1,5 +1,10 @@
 return {
-  -- add symbols-outline
+   "neovim/nvim-lspconfig",
+   "williamboman/mason.nvim",
+   "williamboman/mason-lspconfig.nvim",
+
+
+   -- add symbols-outline
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",

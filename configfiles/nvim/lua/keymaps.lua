@@ -33,3 +33,9 @@ keymap('n', '<leader>ls', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 keymap('n', '<leader>lw', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
 keymap('n', '<leader>ld', '<cmd>Telescope diagnostics<CR>', opts)
 
+
+-- General keymaps
+keymap('n', '<leader>ll', '<cmd>Lazy<CR>', opts)
+
+
+

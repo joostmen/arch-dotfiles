@@ -15,3 +15,17 @@ require("nvim-tree").setup()
 
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
+
+-- mason + mason-lspconfig
+require("mason").setup()
+
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "pyright",
+    "clangd",
+    "lua_ls",
+    "marksman",
+    "texlab",
+  },
+})
+
