@@ -1,25 +1,25 @@
 #!/bin/bash
 
-WALLPAPER_DIR="/home/joost/Images/wallpapers"
-CONFIG_FILE="/home/joost/.config/hypr/hyprpaper.conf"
+WALLPAPER_DIR="$HOME/Images/wallpapers"
 
-monitors=$(hyprctl monitors | grep "^Monitor" | sed -r 's/^Monitor ([^(]+) \(ID [0-9]+\):$/\1/')
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( \
+    -iname '*.jpg'  -o -iname '*.jpeg' -o \
+    -iname '*.png'  -o \
+    -iname '*.gif'  -o \
+    -iname '*.pnm'  -o \
+    -iname '*.tga'  -o \
+    -iname '*.tiff' -o -iname '*.tif' -o \
+    -iname '*.webp' -o \
+    -iname '*.bmp'  -o \
+    -iname '*.ff'   -o \
+    -iname '*.svg'  \
+\) | shuf -n1)
 
->"$CONFIG_FILE"
+# Safety check
+[ -z "$WALLPAPER" ] && exit 1
 
-for wp in "$WALLPAPER_DIR"/*.{jpg,png,jpeg}; do
-  [ -f "$wp" ] && echo "preload = $wp" >>"$CONFIG_FILE"
-done
+swww img "$WALLPAPER" \
+  --transition-type any \
+  --transition-duration 1 \
+  --transition-fps 60
 
-for mon in $monitors; do
-  selected_wp=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | shuf -n 1)
-  echo "wallpaper = $mon,$selected_wp" >>"$CONFIG_FILE"
-done
-
-# Stop hyprpaper
-pkill -x hyprpaper
-
-sleep 0.2
-
-# Start hyprpaper opnieuw
-hyprpaper &
